@@ -1,0 +1,36 @@
+#DataSource Config
+spring:
+  datasource:
+    # HikariCP settings
+    # spring.datasource.hikari.*
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/renren_fast?useSSL=false&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      username: root
+      password: 123456
+
+      connection-timeout: 60000
+      maximum-pool-size: 5
+
+
+
+dynamic:
+  datasource:
+    slave1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/renren_fast?useSSL=false&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      username: root
+      password: 123456
+    slave2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/demo?useSSL=false&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      username: root
+      password: 123456
+mybatis:
+  type-aliases-package: dynamicDataSource.example.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+  mapper-locations: classpath:mapper/*.xml
